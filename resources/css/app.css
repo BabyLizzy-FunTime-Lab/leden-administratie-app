@@ -1,0 +1,28 @@
+/*@import 'tailwindcss';*/
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+main {
+    min-height: calc(100vh - 12em);
+}
+.footer-content {
+    background-color: rgba(0, 0, 0, 0.05);
+    height: 8em;
+}
+.custom-form-select {
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    border-color: #ced4da;
+    color: #393e42;
+}
+
+.page-nav {
+    gap: .5em;
+}
