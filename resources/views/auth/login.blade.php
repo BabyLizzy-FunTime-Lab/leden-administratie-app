@@ -28,4 +28,23 @@
 
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    <div class="pt-4 pb-4">
+        <h2>Test accounts</h2>
+        <div class="list-group">
+            <div class="list-group-item">
+                <strong>Standaard Admin:</strong>
+                <p>
+                    Naam: admin</br>
+                    Wachtwoord: password
+                </p>
+            </div>
+            <div class="list-group-item">
+                <strong>Test User:</strong>
+                <p>
+                    Naam: Mr. Test</br>
+                    Wachtwoord: password
+                </p>
+            </div>
+        </div>
+    </div>
 </x-layout>

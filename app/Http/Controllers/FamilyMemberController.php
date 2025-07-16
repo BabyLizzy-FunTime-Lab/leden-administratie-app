@@ -44,7 +44,7 @@ class FamilyMemberController extends Controller
     {
         $validated = $request->validate([
             'family_id' => 'required|exists:families,id',
-            'name' => 'required|string|max:20',
+            'name' => 'required|string|max:20|unique:users,name',
             'date_of_birth' => 'required|date',
             'age_discount_id' => 'required|string|exists:age_discounts,id',
             'membership_id' => 'required|string|exists:memberships,id',
@@ -87,7 +87,7 @@ class FamilyMemberController extends Controller
     {
         $validated = $request->validate([
             'family_id' => 'required|exists:families,id',
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|max:50|unique:users,name,' . $user->id,
             'date_of_birth' => 'required|date',
             'age_discount_id' => 'required|string|exists:age_discounts,id',
             'membership_id' => 'required|string|exists:memberships,id',

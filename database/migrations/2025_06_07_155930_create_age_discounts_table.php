@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('age_discounts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->integer('min_age');
             $table->integer('max_age');
             $table->integer('discount_percentage');
