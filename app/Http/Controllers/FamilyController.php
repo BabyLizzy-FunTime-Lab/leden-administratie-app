@@ -95,6 +95,6 @@ class FamilyController extends Controller
     {
         $family->delete();
 
-        return redirect()->route('family.index')->with('success', 'Familie info is verwijderd');
+        return redirect()->route('family.index')->with('success', 'Familie ' . $family->name .' is verwijderd');
     }
 }
