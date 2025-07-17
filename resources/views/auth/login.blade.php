@@ -29,7 +29,7 @@
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
     <div class="pt-4 pb-4">
-        <h2>Test accounts</h2>
+        <h4>Test accounts</h4>
         <div class="list-group">
             <div class="list-group-item">
                 <strong>Standaard Admin:</strong>

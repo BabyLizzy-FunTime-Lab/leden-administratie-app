@@ -11,13 +11,15 @@
         <ul class="list-group">
             @foreach($families as $family)
                 <x-listItem>
-                    <div class="d-flex flex-column">
-                        <h5>{{ $family->name }}</h5>
-                        <span>{{"ID: " . $family->id }}</span>
-                        <span>{{"Aantal Familie leden: " . count($family->users) }}</span>
-                        <span>{{"Gemaakt op: " . $family->created_at->format('d-m-Y')}}</span>
-                    </div>
-                    <a href="{{ route('family.show', $family->id) }}">Bekijken</a>
+                    <a class="list-link" href="{{ route('family.show', $family->id) }}">
+                        <div class="d-flex flex-column">
+                            <h5>{{ $family->name }}</h5>
+                            <span>{{"ID: " . $family->id }}</span>
+                            <span>{{"Aantal Familie leden: " . count($family->users) }}</span>
+                            <span>{{"Gemaakt op: " . $family->created_at->format('d-m-Y')}}</span>
+                        </div>
+                        <a href="{{ route('family.show', $family->id) }}">Bekijken</a>
+                    </a>
                 </x-listItem>
             @endforeach
         </ul>

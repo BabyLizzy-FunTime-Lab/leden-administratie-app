@@ -20,7 +20,9 @@
             <ul class="list-group">
                 @foreach($family->users as $user)
                     <x-listItem>
-                        <h5>{{ $user->name }}</h5>
+                        <a class="list-link" href="{{ route('family_member.show', $user->id) }}">
+                            <h5>{{ $user->name }}</h5>
+                        </a>
                         <a href="{{ route('family_member.show', $user->id) }}">Bekijken</a>
                     </x-listItem>
                 @endforeach

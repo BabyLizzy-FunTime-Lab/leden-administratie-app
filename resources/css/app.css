@@ -26,3 +26,12 @@ main {
 .page-nav {
     gap: .5em;
 }
+ .list-link {
+     text-decoration: none;
+     color: black;
+ }
+
+ .list-link:hover {
+     text-decoration: none;
+     color: black;
+ }
