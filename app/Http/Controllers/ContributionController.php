@@ -100,7 +100,7 @@ class ContributionController extends Controller
         // Contribution names are unique. If the name exists, throw error.
         $name = $ageDiscount->name . " " . $membership->name . " " . $bookYear->name;
         if (Contribution::where('name', $name)->exists()) {
-            return redirect()->back()->with('error', 'Deze combinatie is al geen geldige contributie.');
+            return redirect()->back()->with('error', 'Deze combinatie is al een geldige contributie.');
         }
 
         // The total fee is calculated based on the discount percentages.

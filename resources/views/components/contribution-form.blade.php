@@ -93,7 +93,7 @@
     </div>
     <div class="form-group">
         <div>
-            <label for="book_year_id">Bookjaar</label>
+            <label for="book_year_id">Boekjaar</label>
         </div>
         <select
             name="book_year_id"
