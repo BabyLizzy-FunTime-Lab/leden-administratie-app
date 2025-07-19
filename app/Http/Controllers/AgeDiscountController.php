@@ -20,9 +20,14 @@ class AgeDiscountController extends Controller
         $validated  = $request->validate([
             'name' => 'required|max:20|unique:age_discounts,name',
             'min_age' => 'required|numeric|min:0',
-            'max_age' => 'required|numeric|max:150',
+            'max_age' => 'required|numeric|min:0|max:150',
             'discount_percentage' => 'required|numeric|min:0|max:100|unique:age_discounts,discount_percentage',
         ]);
+
+        // The min_age must be lower than the max_age
+        if($validated['min_age'] >= $validated['max_age']){
+            return redirect()->back()->with('warning', 'De min leeftijd moet kleiner zijn dan de max leeftijd');
+        }
 
         AgeDiscount::create($validated);
         return redirect()->route('age_discounts.index')->with('success', 'Leeftijd Categorie is aangemaakt');
@@ -47,7 +52,7 @@ class AgeDiscountController extends Controller
                 Rule::unique('age_discounts')->ignore($ageDiscount->id),
             ],
             'min_age' => 'required|numeric|min:0',
-            'max_age' => 'required|numeric|max:150',
+            'max_age' => 'required|numeric|min:0|max:150',
             'discount_percentage' => [
                 'required',
                 'numeric',
@@ -56,6 +61,11 @@ class AgeDiscountController extends Controller
                 Rule::unique('age_discounts')->ignore($ageDiscount->id),
             ],
         ]);
+
+        // The min_age must be lower than the max_age
+        if($validated['min_age'] >= $validated['max_age']){
+            return redirect()->back()->with('warning', 'De min leeftijd moet kleiner zijn dan de max leeftijd');
+        }
 
         $ageDiscount->fill($validated);
         if($ageDiscount->isDirty()){
