@@ -34,11 +34,11 @@ class MembershipController extends Controller
     public function update(Request $request, Membership $membership)
     {
         if($membership->contributions()->exists()){
-            return redirect()->route('memberships.index')
+            return redirect()->back()
                 ->with('error', 'Lidmaatschap is niet aangepast want het is gekoppeld aan een contributie');
         }
         if($membership->users()->exists()){
-            return redirect()->route('memberships.index')
+            return redirect()->back()
                 ->with('error', 'Lidmaatschap is niet aangepast want het is gekoppeld aan een familie lid');
         }
 
