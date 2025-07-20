@@ -40,6 +40,9 @@
             @endif
             </tbody>
         </table>
+        <x-paginationWrapper>
+            {{ $bookYears->links() }}
+        </x-paginationWrapper>
     </x-contentWrapper>
     <x-contentWrapper>
         <h2>Nieuwe Bookjaar aanmaken</h2>
