@@ -8,7 +8,7 @@
             <a class="btn btn-primary" href="#contribution-form" role="button">Nieuwe Contributie</a>
             <a class="btn btn-primary" href="{{ route('book_years.index') }}" role="button">Boekjaren</a>
             <a class="btn btn-primary" href="{{ route('memberships.index') }}" role="button">Lidmaatschappen</a>
-            <a class="btn btn-primary" href="{{ route('age_discounts.index') }}" role="button">Leeftijd Categorieën</a>
+            <a class="btn btn-primary" href="{{ route('age_discounts.index') }}" role="button">Leeftijdscategorieën</a>
         </div>
     </x-headerWrapper>
     <x-contentWrapper>

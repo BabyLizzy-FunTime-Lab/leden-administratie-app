@@ -1,12 +1,12 @@
 <x-layout>
     <x-headerWrapper>
-        <h2>Leeftijd Categorie Aanpassen</h2>
-        <p class="lead">Leeftijd Categorieën die gekoppeld zijn aan een contributie kunnen niet aangespast worden.</p>
+        <h2>Leeftijdscategorie Aanpassen</h2>
+        <p class="lead">Leeftijdscategorieën die gekoppeld zijn aan een contributie kunnen niet aangespast worden.</p>
         <a
             class="btn btn-primary"
             href="{{ route('age_discounts.index') }}"
             role="button">
-            Alle Leeftijd Categorieën
+            Alle Leeftijdscategorieën
         </a>
     </x-headerWrapper>
     <x-contentWrapper>

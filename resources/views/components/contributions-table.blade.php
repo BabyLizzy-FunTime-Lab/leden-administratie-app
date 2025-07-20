@@ -9,7 +9,7 @@
         <th scope="col">Naam</th>
         <th scope="col">min Leeftijd</th>
         <th scope="col">max Leeftijd</th>
-        <th scope="col">Leeftijd Categorie</th>
+        <th scope="col">Leeftijdscategorie</th>
         <th scope="col">Leeftijd Korting %</th>
         <th scope="col">Lidmaatschap</th>
         <th scope="col">Lidmaatschap Korting %</th>

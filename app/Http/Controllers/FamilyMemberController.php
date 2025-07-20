@@ -66,7 +66,7 @@ class FamilyMemberController extends Controller
                 ->withErrors([
                     'contribution_id' =>
                         'Er is geen geldige contributie gevonden met deze combinatie
-                        van boekjaar, lidmaatschap en leeftijd categorie.'
+                        van boekjaar, lidmaatschap en leeftijdscategorie.'
                 ])
                 ->withInput();
         }
@@ -115,7 +115,7 @@ class FamilyMemberController extends Controller
                 ->withErrors([
                     'contribution_id' =>
                         'Er is geen geldige contributie gevonden met deze combinatie
-                        van boekjaar, lidmaatschap en leeftijd categorie.'
+                        van boekjaar, lidmaatschap en leeftijdscategorie.'
                 ])
                 ->withInput();
         }

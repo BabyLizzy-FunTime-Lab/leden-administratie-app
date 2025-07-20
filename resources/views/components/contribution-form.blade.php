@@ -41,7 +41,7 @@
 
     <div class="form-group">
         <div>
-            <label for="age_discount_id">Leeftijd Categorie</label>
+            <label for="age_discount_id">Leeftijdscategorie</label>
         </div>
         <select
             name="age_discount_id"
@@ -52,7 +52,7 @@
             required
         >
             <option value="0">
-                Selecteer de Leeftijd Categorie
+                Selecteer de Leeftijdscategorie
             </option>
 
             @foreach($ageDiscounts as $ageDiscount)

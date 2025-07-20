@@ -82,7 +82,7 @@
     </div>
     <div class="form-group" @if($accessLevelName() == 'admin' ) hidden @endif>
         <div>
-            <label for="age_discount_id">Leeftijd Categorie</label>
+            <label for="age_discount_id">Leeftijdscategorie</label>
         </div>
         <select
             name="age_discount_id"
@@ -94,7 +94,7 @@
         >
             {{--If the form is used for updating it doesn't need the standaard value.--}}
             <option value="0" @if(!$forUpdating())selected @endif>
-                Selecteer de Leeftijd Categorie
+                Selecteer de Leeftijdscategorie
             </option>
 
             @php

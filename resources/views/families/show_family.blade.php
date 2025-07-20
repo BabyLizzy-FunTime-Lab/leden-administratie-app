@@ -35,7 +35,7 @@
             <thead class="thead-light">
             <tr>
                 <th scope="col">Naam</th>
-                <th scope="col">Leeftijd categorie</th>
+                <th scope="col">Leeftijdscategorie</th>
                 <th scope="col">Lidmaatschap</th>
                 <th scope="col">Bedrag</th>
             </tr>
