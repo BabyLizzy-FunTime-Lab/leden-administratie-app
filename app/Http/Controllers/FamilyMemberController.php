@@ -121,6 +121,11 @@ class FamilyMemberController extends Controller
         $validated['password'] = Hash::make('password');
         $validated['access_level_id'] = $user->access_level_id;
 
+        // Familie met id 1 is uitsluitend voor personeel.
+        if($validated['family_id'] == 1) {
+            return redirect()->back()->with('warning', 'Ingevoerde familie id is niet toegestaan');
+        }
+
         // Check if the contribution needs to change.
         // if age_discount_id, membership_id or book_year_id change
         // Look for a contribution that matches.
@@ -149,7 +154,7 @@ class FamilyMemberController extends Controller
                 ->with('success', 'Familie lid is bijgewerkt');
         }
 
-        return redirect()->back()->with('warning', 'Geen nieuwe data is gedeceteerd nog opgeslagen');
+        return redirect()->back()->with('warning', 'Geen nieuwe data is gedetecteerd nog opgeslagen');
     }
 
     /**

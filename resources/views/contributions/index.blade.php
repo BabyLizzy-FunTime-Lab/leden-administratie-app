@@ -2,7 +2,7 @@
     <x-headerWrapper>
         <h2>Contributies</h2>
         <p class="lead">Dit zijn alle contributies en kortingen die geldig zijn voor familie leden.</p>
-        <p class="lead">Alleen admins mogen de "personeel" contributie hebben. De Admin contributie kan
+        <p class="lead">Alleen de admin mag de "personeel" contributie hebben. De Admin contributie kan
             niet aangepast worden</p>
         <div class="page-nav d-flex flex-wrap">
             <a class="btn btn-primary" href="#contribution-form" role="button">Nieuwe Contributie</a>
