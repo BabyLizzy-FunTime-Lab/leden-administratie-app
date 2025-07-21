@@ -61,7 +61,7 @@ class ContributionController extends Controller
         // Contribution names are unique. If the name exists, throw error.
         $name = $ageDiscount->name . " " . $membership->name . " " . $bookYear->name;
         if (Contribution::where('name', $name)->exists()) {
-            return redirect()->back()->with('error', 'De Contribuatie is al geen geldige contributie.');
+            return redirect()->back()->with('error', 'Die combinatie is al een geldige contributie.');
         }
 
         // The total fee is calculated based on the discount percentages.
@@ -142,7 +142,7 @@ class ContributionController extends Controller
         $contribution->fill($validated);
         if ($contribution->isDirty()) {
             $contribution->save();
-            return redirect()->route('contribution.edit', $contribution->id)->with('success', 'Contribuatie is aangepast');
+            return redirect()->route('contribution.edit', $contribution->id)->with('success', 'Contributie is aangepast');
         }
     }
 
