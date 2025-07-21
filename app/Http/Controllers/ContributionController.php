@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\QueryException;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Contribution;
 use App\Models\BookYear;
@@ -11,6 +15,9 @@ use App\Models\AgeDiscount;
 
 class ContributionController extends Controller
 {
+    /**
+     * Toont alle contributies
+     */
     public function index()
     {
         // Fetch data of their own family.
@@ -31,6 +38,14 @@ class ContributionController extends Controller
         ]);
     }
 
+    /**
+     * Slaat een nieuwe contributie op, mits dat de naam unieke is.
+     * De naam wordt samengesteld uit de van de geselecteerde leeftijdscategorie (ageDiscount),
+     * het boekjaar (bookYear) en het lidmaatschaap (membership). Het berekent de totale contributiebedrag
+     * voor de user (total_contribution_fee).
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -64,6 +79,11 @@ class ContributionController extends Controller
         return redirect()->route('contribution.index')->with('success', 'Nieuwe Contributie is aangemaakt');
     }
 
+    /**
+     * Toont een contributie zodat je deze kunt aanpassen, behalve als het om de “personeel” contributie gaat.
+     * @param Contribution $contribution
+     * @return Factory|View|Application|RedirectResponse|object
+     */
     public function edit(Contribution $contribution)
     {
         // The Admin contribution (personeel) may not be edited.
@@ -74,6 +94,13 @@ class ContributionController extends Controller
         return view('contributions.edit', ['contribution' => $contribution]);
     }
 
+    /**
+     * Past een contributie aan, tenzij de nieuwe combinatie al bestaat. Hierbij wordt ook het totaalbedrag
+     * (total_contribution_fee) opnieuw berekend en de naam opnieuw samengesteld
+     * @param Request $request
+     * @param Contribution $contribution
+     * @return RedirectResponse|void
+     */
     public function update(Request $request, Contribution $contribution)
     {
         $validated = $request->validate([
@@ -119,6 +146,12 @@ class ContributionController extends Controller
         }
     }
 
+    /**
+     * Verwijdert een contributie, tenzij het om de “personeel” contributie gaat of de contributie gekoppeld is
+     * aan een gebruiker.
+     * @param Contribution $contribution
+     * @return RedirectResponse
+     */
     public function destroy(Contribution $contribution)
     {
         if ($contribution->name == 'personeel') {

@@ -7,12 +7,20 @@ use App\Models\BookYear;
 
 class BookYearController extends Controller
 {
+    /**
+     * Toont alle boekjaren
+     */
     public function index()
     {
         $bookYears = BookYear::where('name', '!=', '0000')->paginate(6);
         return view('bookyears.index', ['bookYears' => $bookYears]);
     }
 
+    /**
+     * Maakt een nieuwe boekjaar aan, zolang het jaar (name) uniek is.
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validated  = $request->validate([
@@ -28,6 +36,11 @@ class BookYearController extends Controller
         return redirect()->route('book_years.index')->with('success', 'Nieuwe boekjaar is aangemaakt');
     }
 
+    /**
+     * Verwijdert een boekjaar, zolang het niet gekoppeld is aan een contributie.
+     * @param BookYear $bookYear
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(BookYear $bookYear)
     {
         if($bookYear->contributions()->exists()) {

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PasswordController extends Controller
 {
+    /**
+     * Kan een wachtwoord aanpassen (update) maar alleen voor de ingelogde user.
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request)
     {
         $validated = $request->validate([

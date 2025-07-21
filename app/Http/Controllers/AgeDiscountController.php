@@ -2,19 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\QueryException;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use App\Models\AgeDiscount;
 use Illuminate\Validation\Rule;
 
 class AgeDiscountController extends Controller
 {
+    /**
+     * Toont alle leeftijdscategorieën met hun bijbehorende korting, behalve de personeel categorie. Deze categorie kan
+     * niet worden aangepast nog vernietigd.
+     */
     public function index()
     {
         $ageDiscounts = AgeDiscount::where('name', '!=', 'personeel')->orderBy('created_at', 'desc')->paginate(5);
         return view('age_discounts.index', ['ageDiscounts' => $ageDiscounts]);
     }
 
+    /**
+     * Slaat een nieuwe leeftijdscategorie op, zolang de naam en het kortingspercentage uniek zijn. De minimumleeftijd
+     * moet kleiner zijn dan de maximumleeftijd en groter dan nul.
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validated  = $request->validate([
@@ -33,11 +46,23 @@ class AgeDiscountController extends Controller
         return redirect()->route('age_discounts.index')->with('success', 'Leeftijd Categorie is aangemaakt');
     }
 
+    /**
+     * Toont de "Leeftijdscategorie Aanpassen" pagina met de informatie van de geselecteerde categorie.
+     * @param AgeDiscount $ageDiscount
+     * @return Factory|View|Application|object
+     */
     public function edit(AgeDiscount $ageDiscount)
     {
         return view('age_discounts.edit', ['ageDiscount' => $ageDiscount]);
     }
 
+    /**
+     * Past een leeftijdscategorie aan, zolang de naam en kortingspercentage uniek zijn en deze niet gekoppeld is aan
+     * een contributie. Ook hier moet de minimumleeftijd kleiner zijn dan de maximumleeftijd en groter dan nul.
+     * @param Request $request
+     * @param AgeDiscount $ageDiscount
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, AgeDiscount $ageDiscount)
     {
         if($ageDiscount->contributions()->exists()){
@@ -77,6 +102,11 @@ class AgeDiscountController extends Controller
         return redirect()->back()->with('warning', 'Geen nieuwe data is gedeceteerd nog opgeslagen');
     }
 
+    /**
+     * Verwijdert een leeftijdscategorie, zolang deze niet gekoppeld is aan een contributie.
+     * @param AgeDiscount $ageDiscount
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(AgeDiscount $ageDiscount)
     {
         if($ageDiscount->contributions()->exists()){

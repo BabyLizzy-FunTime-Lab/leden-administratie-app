@@ -8,11 +8,20 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    /**
+     * Toont de inlog pagina.
+     */
     public function showLogin()
     {
         return view('auth.login');
     }
 
+    /**
+     * Verwerkt de loginlogica
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws ValidationException
+     */
     public function login(Request $request)
     {
         $validated = $request->validate([
@@ -37,6 +46,11 @@ class AuthController extends Controller
 
     }
 
+    /**
+     * Verwerkt de logoutlogica
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout(Request $request)
     {
         // This only removes user data, but all other data will remain. So shopping cart stuff saved in the session

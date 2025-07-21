@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Contribution;
 use App\Models\User;
@@ -10,6 +14,11 @@ use Illuminate\Support\Facades\Hash;
 
 class FamilyMemberController extends Controller
 {
+    /**
+     * Toont een familielid
+     * @param $id
+     * @return Factory|View|Application|RedirectResponse|object
+     */
     public function show($id)
     {
         // Fetch all data of one family member with $id
@@ -40,6 +49,11 @@ class FamilyMemberController extends Controller
         return redirect()->route('family.index')->with('error', 'Geen toegang tot dit familielid.');
     }
 
+    /**
+     * Slaat een familielid op
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -83,6 +97,12 @@ class FamilyMemberController extends Controller
             ->with('success', 'Nieuwe familie lid is toegevoegd');
     }
 
+    /**
+     * Past een familielid aan
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
+     */
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
@@ -132,6 +152,11 @@ class FamilyMemberController extends Controller
         return redirect()->back()->with('warning', 'Geen nieuwe data is gedeceteerd nog opgeslagen');
     }
 
+    /**
+     * Verwijdert een familielid
+     * @param $id
+     * @return RedirectResponse
+     */
     public function destroy($id)
     {
         if($id == 1) {

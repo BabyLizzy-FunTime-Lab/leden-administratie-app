@@ -3,18 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Database\QueryException;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Membership;
+use Illuminate\Routing\Redirector;
 use Illuminate\Validation\Rule;
 
 class MembershipController extends Controller
 {
+    /**
+     * Toont alle lidmaatschappen
+     */
     public function index()
     {
         $memberships = Membership::where('name', '!=', 'personeel')->paginate(5);
         return view('memberships.index', ['memberships' => $memberships]);
     }
 
+    /**
+     * Slaat een lidmaatschap op zolang de naam en het kortingspercentage uniek zijn
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector|object
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -26,11 +37,23 @@ class MembershipController extends Controller
         return redirect('/memberships')->with('success', 'Nieuwe Lidmaatschap is aangemaakt');
     }
 
+    /**
+     * Toont de pagina “Lidmaatschap Aanpassen”.
+     * @param Membership $membership
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|Application|object
+     */
     public function edit(Membership $membership)
     {
         return view('memberships.edit', ['membership' => $membership]);
     }
 
+    /**
+     * Past een lidmaatschap aan zolang het niet gekoppeld is aan een user en/of een contributie. Ook de naam en het
+     * kortingspercentage moeten uniek zijn.
+     * @param Request $request
+     * @param Membership $membership
+     * @return RedirectResponse
+     */
     public function update(Request $request, Membership $membership)
     {
         if($membership->contributions()->exists()){
@@ -67,6 +90,11 @@ class MembershipController extends Controller
         return redirect()->back()->with('warning', 'Geen nieuwe data is gedeceteerd nog opgeslagen');
     }
 
+    /**
+     * Verwijderd een lidmaatschap, zolang het niet gekoppeld is aan een user of een contributie.
+     * @param Membership $membership
+     * @return RedirectResponse
+     */
     public function destroy(Membership $membership)
     {
         // The membership can't be deleted if it has a relation to a user or a membership.

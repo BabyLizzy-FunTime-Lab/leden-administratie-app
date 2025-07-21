@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Family;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class FamilyController extends Controller
 {
-    // Start van de app na inloggen.
+    /**
+     * Index() is het startpunt van de app na inloggen. Bepaalt wat een gewone user of een admin te zien krijgen.
+     */
     public function index()
     {
         $user = Auth::user();
@@ -26,6 +32,9 @@ class FamilyController extends Controller
         }
     }
 
+    /**
+     * Roept alle families op en toont ze
+     */
     public function showFamilies()
     {
         // Fetch all family data and add pagination.
@@ -38,6 +47,11 @@ class FamilyController extends Controller
         ]);
     }
 
+    /**
+     * Roept één familie op en toont deze.
+     * @param $id
+     * @return Factory|View|Application|RedirectResponse|object
+     */
     public function showFamily($id)
     {
         $user = Auth::user();
@@ -57,6 +71,11 @@ class FamilyController extends Controller
         return redirect()->route('family.index')->with('error', 'Geen toegang tot gevraagde familie');
     }
 
+    /**
+     * Slaat een nieuwe familie op
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -69,6 +88,12 @@ class FamilyController extends Controller
         return redirect()->route('family.index')->with('success', 'Family toegevoegd');
     }
 
+    /**
+     * Past een bestaande familie aan
+     * @param Request $request
+     * @param Family $family
+     * @return RedirectResponse
+     */
     public function update(Request $request, Family $family)
     {
         $validated = $request->validate([
@@ -91,6 +116,11 @@ class FamilyController extends Controller
         return redirect()->back()->with('warning', 'Familie informatie is niet opgeslagen.');
     }
 
+    /**
+     * Verwijdert een familie (destroy). Dit heeft een cascade-effect en verwijdert ook de bijbehorende familieleden.
+     * @param Family $family
+     * @return RedirectResponse
+     */
     public function destroy(Family $family)
     {
         $family->delete();
