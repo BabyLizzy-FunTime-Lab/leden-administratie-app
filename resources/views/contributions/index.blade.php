@@ -5,10 +5,10 @@
         <p class="lead">Alleen de admin mag de "personeel" contributie hebben. De Admin contributie kan
             niet aangepast worden</p>
         <div class="page-nav d-flex flex-wrap">
-            <a class="btn btn-primary" href="#contribution-form" role="button">Nieuwe Contributie</a>
-            <a class="btn btn-primary" href="{{ route('book_years.index') }}" role="button">Boekjaren</a>
-            <a class="btn btn-primary" href="{{ route('memberships.index') }}" role="button">Lidmaatschappen</a>
-            <a class="btn btn-primary" href="{{ route('age_discounts.index') }}" role="button">Leeftijdscategorieën</a>
+            <a class="btn btn-primary header-wrapper_action" href="#contribution-form" role="button">Nieuwe Contributie</a>
+            <a class="btn btn-primary header-wrapper_action" href="{{ route('book_years.index') }}" role="button">Boekjaren</a>
+            <a class="btn btn-primary header-wrapper_action" href="{{ route('memberships.index') }}" role="button">Lidmaatschappen</a>
+            <a class="btn btn-primary header-wrapper_action" href="{{ route('age_discounts.index') }}" role="button">Leeftijdscategorieën</a>
         </div>
     </x-headerWrapper>
     <x-contentWrapper>
