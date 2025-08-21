@@ -26,12 +26,37 @@ main {
 .page-nav {
     gap: .5em;
 }
- .list-link {
-     text-decoration: none;
-     color: black;
- }
 
- .list-link:hover {
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.table-container th:first-child,
+.table-container td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;        /* keep above other cells */
+}
+.table-container td:first-child {
+    background: white;
+}
+.table_colspan-totaal {
+    background: transparent !important;
+}
+
+.header-wrapper_action {
+    margin-top: .5em;
+    width: 12em;
+}
+
+ .list-item_link {
      text-decoration: none;
      color: black;
  }
+ .list-item_link:hover {
+     text-decoration: none;
+     color: black;
+ }
+.list-item_action {
+    padding-left: .4em;
+}

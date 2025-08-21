@@ -5,41 +5,43 @@
     </x-headerWrapper>
     <x-contentWrapper>
         <h2>Alle Bookjaren</h2>
-        <table class="table table-hover text-center">
-            <thead class="thead-light">
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Naam</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            @if(count($bookYears) == 0)
+        <div class="table-container">
+            <table class="table table-hover text-center">
+                <thead class="thead-light">
                 <tr>
-                    <td colspan="3">Geen contributies gevonden</td>
+                    <th scope="col">Id</th>
+                    <th scope="col">Naam</th>
+                    <th></th>
                 </tr>
-            @else
-                @foreach($bookYears as $bookYear)
+                </thead>
+                <tbody>
+                @if(count($bookYears) == 0)
                     <tr>
-                        <td>{{ $bookYear->id }}</td>
-                        <td>{{ $bookYear->name }}</td>
-                        <td>
-                            <form action="{{ route('book_years.delete', $bookYear->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button
-                                    class="btn btn-danger"
-                                    type="submit"
-                                    role="button">
-                                    Verwijder
-                                </button>
-                            </form>
-                        </td>
+                        <td colspan="3">Geen contributies gevonden</td>
                     </tr>
-                @endforeach
-            @endif
-            </tbody>
-        </table>
+                @else
+                    @foreach($bookYears as $bookYear)
+                        <tr>
+                            <td>{{ $bookYear->id }}</td>
+                            <td>{{ $bookYear->name }}</td>
+                            <td>
+                                <form action="{{ route('book_years.delete', $bookYear->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        class="btn btn-danger"
+                                        type="submit"
+                                        role="button">
+                                        Verwijder
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+                </tbody>
+            </table>
+        </div>
         <x-paginationWrapper>
             {{ $bookYears->links() }}
         </x-paginationWrapper>

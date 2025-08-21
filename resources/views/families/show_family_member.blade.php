@@ -7,7 +7,7 @@
         @else
             <h1>Familie lid: {{ $familyMember->name }}</h1>
             <p class="lead">ID: {{ $familyMember->id }}</p>
-            <a class="btn btn-primary" href="{{ route('family.show', $familyMember->family_id) }}" role="button">Bekijk Familie</a>
+            <a class="btn btn-primary header-wrapper_action" href="{{ route('family.show', $familyMember->family_id) }}" role="button">Bekijk Familie</a>
         @endif
     </x-headerWrapper>
     <x-contentWrapper>
